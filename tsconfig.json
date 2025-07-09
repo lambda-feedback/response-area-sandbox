@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noUnusedLocals": true,
+    "incremental": true,
+    "noUncheckedIndexedAccess": true,
+    "downlevelIteration": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["externals/components/*"],
+      "@modules/*": ["externals/modules/*"],
+      "@api": ["externals/api"],
+      "@api/*": ["externals/api/*"],
+      "@hooks/*": ["externals/hooks/*"],
+      "@services/*": ["externals/services/*"],
+      "@utils/*": ["externals/utils/*"],
+      "@styles": ["externals/styles"],
+      "@styles/*": ["externals/styles/*"],
+      "@lexdown/*": ["externals/components/Lexdown/*"],
+      "types/*": ["externals/types/*"],
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
