@@ -11,6 +11,10 @@ class WrappedSandboxResponseAreaTub extends SandboxResponseAreaTub {
   constructor() {
     super()
 
+    if (!this.responseType) {
+      console.error('SandboxResponseAreaTub must have a responseType set')
+    }
+
     const originalInput = this.InputComponent
     const originalWizard = this.WizardComponent
 
