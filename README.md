@@ -57,3 +57,11 @@ Inspect the browser console and make sur the iife file is found.
 
 Reload the page.
 If it keeps happening, check the browser console.
+
+##### 3. A `[VOID]` component is shown
+
+The response area type isn't available. This could be because:
+- the sandbox isn't available anymore
+- the type's name was changed
+
+I gnore it, or check the browser console.
