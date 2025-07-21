@@ -35,7 +35,6 @@ interface MatrixProps extends BaseResponseAreaProps {
 export const Matrix: React.FC<MatrixProps> = ({
   handleChange,
   handleSubmit,
-  previewSubmit,
   answer,
   preResponseText,
   postResponseText,
@@ -51,7 +50,6 @@ export const Matrix: React.FC<MatrixProps> = ({
     <MatrixLegacy
       handleChange={handleChange}
       handleSubmit={handleSubmit}
-      previewSubmit={previewSubmit}
       rows={rows}
       cols={cols}
       matrix={matrix}
@@ -73,7 +71,6 @@ export const MatrixLegacy: React.FC<MatrixLegacyProps> = ({
   matrix,
   handleChange,
   handleSubmit,
-  previewSubmit,
   preResponseText,
   postResponseText,
 }) => {
@@ -199,7 +196,6 @@ export const MatrixLegacy: React.FC<MatrixLegacyProps> = ({
                         rowArray[columnIndex] = event.target.value
 
                         handleChange(newMatrix)
-                        previewSubmit?.(newMatrix)
                       }}
                     />
                   </td>

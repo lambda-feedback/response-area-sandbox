@@ -1,6 +1,5 @@
 import { TextInput } from '@components/Form/TextInput/TextInput.component'
 import { makeStyles } from '@styles'
-import { noop } from 'lodash'
 import React from 'react'
 import { Stylable } from 'types/react'
 
@@ -67,7 +66,6 @@ export const TableWizard: React.FC<TableWizardProps> = props => {
       </div>
       <div className={classes.table}>
         <Table
-          previewSubmit={noop}
           namesEditable
           rows={rows}
           cols={cols}

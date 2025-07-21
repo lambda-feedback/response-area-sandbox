@@ -67,10 +67,6 @@ type TableProps = Omit<BaseResponseAreaProps, 'handleChange'> & {
     rowNames: Array<string>
     colNames: Array<string>
   }) => void
-  previewSubmit?: (
-    submission: IMatrixResponse,
-    additionalParams?: Record<string, any>,
-  ) => void
 }
 
 export const Table: React.FC<TableProps> = ({
@@ -82,7 +78,6 @@ export const Table: React.FC<TableProps> = ({
   namesEditable,
   handleChange,
   handleSubmit,
-  previewSubmit,
 }) => {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -271,7 +266,6 @@ export const Table: React.FC<TableProps> = ({
                             rowNames,
                             colNames,
                           })
-                          previewSubmit?.(newMatrix)
                         }}
                       />
                     </td>

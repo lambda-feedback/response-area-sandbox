@@ -1,6 +1,5 @@
 import { TextInput } from '@components/Form/TextInput/TextInput.component'
 import { makeStyles } from '@styles'
-import { noop } from 'lodash'
 import React from 'react'
 
 import { FullResponseAreaWizardProps } from '../base-props.type'
@@ -56,7 +55,6 @@ export const MatrixWizard: React.FC<FullResponseAreaWizardProps> = props => {
       </div>
       <div className={classes.matrix}>
         <MatrixLegacy
-          previewSubmit={noop}
           rows={rows}
           cols={cols}
           matrix={matrix}

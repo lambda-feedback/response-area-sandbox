@@ -74,7 +74,6 @@ export class TableResponseAreaTub extends ResponseAreaTub {
     return Table({
       handleChange: args => props.handleChange(args.matrix),
       handleSubmit: props.handleSubmit,
-      previewSubmit: props.previewSubmit,
       rows: this.config.rows,
       cols: this.config.cols,
       rowNames: this.config.rowNames,
