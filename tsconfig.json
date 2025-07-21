@@ -28,7 +28,6 @@
       "@utils/*": ["externals/utils/*"],
       "@styles": ["externals/styles"],
       "@styles/*": ["externals/styles/*"],
-      "@lexdown/*": ["externals/components/Lexdown/*"],
       "types/*": ["externals/types/*"],
     }
   },

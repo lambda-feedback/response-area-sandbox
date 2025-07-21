@@ -9,7 +9,14 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@components': path.resolve(__dirname, './externals/components'),
+      '@modules': path.resolve(__dirname, './externals/modules'),
+      '@api': path.resolve(__dirname, './externals/api'),
+      '@hooks': path.resolve(__dirname, './externals/hooks'),
+      '@services': path.resolve(__dirname, './externals/services'),
+      '@utils': path.resolve(__dirname, './externals/utils'),
       '@styles': resolve(__dirname, 'externals/styles'),
+      types: resolve(__dirname, 'externals/types'),
     },
   },
   server: {
