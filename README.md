@@ -1,6 +1,18 @@
 # Response Area Sandbox
 
-Develop local typscript code to manipulate response areas,and see it previewed live in the main application. When they're ready, provide your code to the Lambda Feedback team, who will consider including it in the main application after (human) review. 
+Develop local TypeScript code to create custom response area types, and see them previewed live in the main application. When they're ready, provide your code to the Lambda Feedback team, who will consider including it in the main application after (human) review.
+
+## Overview
+
+To create a new response area type, you'll need to:
+
+1. **Extend the base class**: Create a new class that extends `ResponseAreaTub`
+2. **Define the expected configuration and answer types**: Set `configSchema`, and `answerSchema`
+3. **Implement components**: Create `InputComponent` (shown to students and teachers) and `WizardComponent` (for configuration)
+
+**📚 For detailed documentation on the `ResponseAreaTub` class and component props, see the inline code comments in [response-area-tub.ts](src/types/response-area-tub.ts) and [base-props.type.ts](src/types/base-props.type.ts) (they'll also show up in your IDE's autocomplete and hover tooltips).**
+
+Find inspiration with the existing response area types in the repo - it's fine to copy/paste code between types to get started quickly.
 
 ## Development
 
