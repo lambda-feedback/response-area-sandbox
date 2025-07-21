@@ -92,7 +92,11 @@ The response area type isn't available. This could be because:
 - the sandbox isn't available anymore
 - the type's name was changed
 
-Return to Step 4.
+##### 4. `Error: Could not extract config` or `Error: Could not extract answer`
+
+This is likely caused by a stored config/answer value in a response area that doesn't comply to the schema defined in the new response area tub class.
+This can happen if you change the config/answer schema after having created/answered response areas. This isn't allowed.
+To fix this, revert to the original schemas and delete the old response area(s) before changing the schemas.
 
 ### Note to LLM helpers
 
