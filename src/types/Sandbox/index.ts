@@ -5,10 +5,11 @@ import {
   BaseResponseAreaWizardProps,
 } from '../base-props.type'
 import { ResponseAreaTub } from '../response-area-tub'
-import { TextInput } from '../TextInput/TextInput.component'
+
+import { SandboxInput } from './SandboxInput.component'
 
 export class SandboxResponseAreaTub extends ResponseAreaTub {
-  public readonly responseType = ''
+  public readonly responseType = 'SANDBOX'
 
   protected answerSchema = z.string()
 
@@ -16,14 +17,14 @@ export class SandboxResponseAreaTub extends ResponseAreaTub {
 
   InputComponent = (props: BaseResponseAreaProps) => {
     const parsedAnswer = this.answerSchema.safeParse(props.answer)
-    return TextInput({
+    return SandboxInput({
       ...props,
       answer: parsedAnswer.success ? parsedAnswer.data : undefined,
     })
   }
 
   WizardComponent = (props: BaseResponseAreaWizardProps) => {
-    return TextInput({
+    return SandboxInput({
       ...props,
       answer: this.answer,
       handleChange: answer => {
