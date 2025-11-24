@@ -1,38 +1,46 @@
-import z from 'zod'
-
+import { z } from 'zod'
+import { ResponseAreaTub } from '../response-area-tub'
+import { ImagesInputComponent } from './ImagesInput.component'
+import { ImagesWizardComponent } from './ImagesWizard.component'
 import {
   BaseResponseAreaProps,
   BaseResponseAreaWizardProps,
 } from '../base-props.type'
-import { ResponseAreaTub } from '../response-area-tub'
+import { configSchema, answerSchema, CONSTRAINTS } from './Images.schema'
 
-import { SandboxInput } from './SandboxInput.component'
 
 export class SandboxResponseAreaTub extends ResponseAreaTub {
-  public readonly responseType = 'SANDBOX'
+  public readonly responseType = 'IMAGES'
+  protected configSchema = configSchema
+  protected answerSchema = answerSchema
 
-  protected answerSchema = z.string()
+  protected config?: z.infer<typeof configSchema>
+  protected answer?: z.infer<typeof answerSchema>
 
-  protected answer?: string
+ initWithDefault = () => {
+    this.config = {
+      maxImages: CONSTRAINTS.maxImages.default,
+      allowedTypes: CONSTRAINTS.allowedTypes.default,
+      maxSizeMb: CONSTRAINTS.maxSizeMb.default,
+      resizeMaxSide: CONSTRAINTS.resizeMaxSide.default,
+    }
+    this.answer = []
+  }
 
   InputComponent = (props: BaseResponseAreaProps) => {
-    const parsedAnswer = this.answerSchema.safeParse(props.answer)
-    return SandboxInput({
+    return ImagesInputComponent({
       ...props,
-      answer: parsedAnswer.success ? parsedAnswer.data : undefined,
+      config: this.config,
     })
   }
 
   WizardComponent = (props: BaseResponseAreaWizardProps) => {
-    return SandboxInput({
+    if (!this.config) throw new Error('Config missing')
+    if (this.answer === undefined) throw new Error('Answer missing')
+    return ImagesWizardComponent({
       ...props,
+      config: this.config,
       answer: this.answer,
-      handleChange: answer => {
-        props.handleChange({
-          responseType: this.responseType,
-          answer,
-        })
-      },
     })
   }
 }
