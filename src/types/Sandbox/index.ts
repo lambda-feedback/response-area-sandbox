@@ -33,16 +33,25 @@ export class SandboxResponseAreaTub extends ResponseAreaTub {
   }
 
   customCheck = () => {
-    // Add any custom validation logic here
-    // Return true if valid, false if invalid
-    // For images, you might want to check file sizes, types, etc.
-
+    //Validate configuration and answer
     if (!this.config) return false
-    if (this.answer === undefined) return false
+    if (!Array.isArray(this.answer)) return false
 
-    // Example: Check if answer respects maxImages constraint
+    //Check number of images
     if (this.answer.length > this.config.maxImages) return false
+    if (this.answer.length < 0) return false
 
+    //Check each image
+    for (const img of this.answer) {
+      //Check required fields
+      if (!img) return false
+      if (typeof img.data !== 'string' ) return false
+      if (typeof img.name !== 'string' || !img.name) return false
+      if (typeof img.type !== 'string' || !this.config.allowedTypes.includes(img.type)) return false
+      if (typeof img.size !== 'number' || img.size > this.config.maxSizeMb * 1024 * 1024) return false
+      //Optional comment
+      if (img.comment !== undefined && typeof img.comment !== 'string') return false
+    }
     return true
   }
 
