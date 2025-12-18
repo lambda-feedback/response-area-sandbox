@@ -1,9 +1,14 @@
 import React from 'react'
 import { BaseResponseAreaWizardProps } from '../base-props.type'
-import { CONSTRAINTS } from './Images.schema'
+import { CONSTRAINTS, configSchema, answerSchema, ImagesConfig, ImagesAnswer } from './Images.schema'
 import { ImagesInputComponent } from './ImagesInput.component'
 
-export const ImagesWizardComponent: React.FC<BaseResponseAreaWizardProps & { config?: any; answer?: any }> = ({
+type ImagesWizardProps = BaseResponseAreaWizardProps & {
+  config?: ImagesConfig
+  answer?: ImagesAnswer
+}
+
+export const ImagesWizardComponent: React.FC<ImagesWizardProps> = ({
   handleChange,
   setAllowSave,
   config,

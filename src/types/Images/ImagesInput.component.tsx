@@ -1,17 +1,30 @@
 import React, { useRef } from 'react'
 import { BaseResponseAreaProps } from '../base-props.type'
-import { CONSTRAINTS } from './Images.schema'
+import { CONSTRAINTS, configSchema, answerSchema, ImagesConfig, ImagesAnswer } from './Images.schema'
+import { z } from 'zod'
+
+type ImagesInputProps = Omit<BaseResponseAreaProps, 'config' | 'handleChange'> & {
+  config?: ImagesConfig
+  handleChange: (answer: ImagesAnswer) => void
+}
 
 // --- INPUT COMPONENT ---
 
-export const ImagesInputComponent: React.FC<BaseResponseAreaProps> = ({
+export const ImagesInputComponent: React.FC<ImagesInputProps> = ({
   config,
-  answer = [],
+  answer,
   handleChange,
   typesafeErrorMessage,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null)
-  const { maxImages, allowedTypes, maxSizeMb } = config as any || {}
+  const typedAnswer = (Array.isArray(answer) ? answer : []) as ImagesAnswer
+  const cfg = config || {
+    maxImages: CONSTRAINTS.maxImages.default,
+    allowedTypes: CONSTRAINTS.allowedTypes.default,
+    maxSizeMb: CONSTRAINTS.maxSizeMb.default,
+    resizeMaxSide: CONSTRAINTS.resizeMaxSide.default,
+  }
+  const { maxImages, allowedTypes, maxSizeMb } = cfg
 
   const resizeImage = (file: File, maxSide: number): Promise<{ data: string; size: number }> => {
     return new Promise((resolve, reject) => {
@@ -52,8 +65,8 @@ export const ImagesInputComponent: React.FC<BaseResponseAreaProps> = ({
 
   const handleFiles = async (files: FileList | null) => {
     if (!files) return
-    const arr: any[] = []
-    const resizeMaxSide = (config as any)?.resizeMaxSide || 0
+    const arr: ImagesAnswer = []
+    const resizeMaxSide = cfg.resizeMaxSide || 0
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       if (!file) continue;
@@ -93,19 +106,22 @@ export const ImagesInputComponent: React.FC<BaseResponseAreaProps> = ({
         comment: '',
       })
     }
-    const newAnswer = [...(answer as any[]), ...arr].slice(0, maxImages || CONSTRAINTS.maxImages.default)
+    const newAnswer = [...typedAnswer, ...arr].slice(0, maxImages || CONSTRAINTS.maxImages.default)
     handleChange(newAnswer)
   }
 
   const handleRemove = (idx: number) => {
-    const newAnswer = [...(answer as any[])]
+    const newAnswer = [...typedAnswer]
     newAnswer.splice(idx, 1)
     handleChange(newAnswer)
   }
 
   const handleCommentChange = (comment: string, idx: number) => {
-    const newAnswer = [...(answer as any[])]
-    newAnswer[idx] = { ...newAnswer[idx], comment }
+    const newAnswer = [...typedAnswer]
+    const item = newAnswer[idx]
+    if (item) {
+      newAnswer[idx] = { ...item, comment } as ImagesAnswer[number]
+    }
     handleChange(newAnswer)
   }
 
@@ -123,7 +139,7 @@ export const ImagesInputComponent: React.FC<BaseResponseAreaProps> = ({
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
-        disabled={Array.isArray(answer) && answer.length >= (maxImages || CONSTRAINTS.maxImages.default)}
+        disabled={typedAnswer.length >= (maxImages || CONSTRAINTS.maxImages.default)}
         style={{
           backgroundColor: '#0099c4',
           color: '#ffffff',
@@ -140,7 +156,7 @@ export const ImagesInputComponent: React.FC<BaseResponseAreaProps> = ({
         Add images
       </button>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
-        {(answer as any[]).map((img, idx) => (
+        {typedAnswer.map((img, idx) => (
           <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <div style={{ position: 'relative' }}>
               <img

@@ -6,7 +6,7 @@ import {
   BaseResponseAreaProps,
   BaseResponseAreaWizardProps,
 } from '../base-props.type'
-import { configSchema, answerSchema, CONSTRAINTS } from './Images.schema'
+import { configSchema, answerSchema, CONSTRAINTS, ImagesConfig, ImagesAnswer } from './Images.schema'
 
 
 export class SandboxResponseAreaTub extends ResponseAreaTub {
@@ -14,8 +14,8 @@ export class SandboxResponseAreaTub extends ResponseAreaTub {
   protected configSchema = configSchema
   protected answerSchema = answerSchema
 
-  protected config?: z.infer<typeof configSchema>
-  protected answer?: z.infer<typeof answerSchema>
+  protected config?: ImagesConfig
+  protected answer?: ImagesAnswer
 
  initWithDefault = () => {
     this.config = {
@@ -27,7 +27,7 @@ export class SandboxResponseAreaTub extends ResponseAreaTub {
     this.answer = []
   }
 
-  initWithConfig = (config: z.infer<typeof configSchema>) => {
+  initWithConfig = (config: ImagesConfig) => {
     this.config = config
     this.answer = []
   }

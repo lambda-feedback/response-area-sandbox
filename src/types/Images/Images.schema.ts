@@ -24,3 +24,7 @@ export const answerSchema = z.array(
     comment: z.string().optional(),
   })
 ).max(CONSTRAINTS.maxImages.max)
+
+// --- TYPE EXPORTS ---
+export type ImagesConfig = z.infer<typeof configSchema>
+export type ImagesAnswer = z.infer<typeof answerSchema>
