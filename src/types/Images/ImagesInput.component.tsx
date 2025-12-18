@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import { BaseResponseAreaProps } from '../base-props.type'
-import { CONSTRAINTS, configSchema, answerSchema, ImagesConfig, ImagesAnswer } from './Images.schema'
-import { z } from 'zod'
+import { CONSTRAINTS, ImagesConfig, ImagesAnswer } from './Images.schema'
 
 type ImagesInputProps = Omit<BaseResponseAreaProps, 'config' | 'handleChange'> & {
   config?: ImagesConfig
+  
   handleChange: (answer: ImagesAnswer) => void
 }
 

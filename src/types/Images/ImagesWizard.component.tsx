@@ -1,6 +1,6 @@
 import React from 'react'
 import { BaseResponseAreaWizardProps } from '../base-props.type'
-import { CONSTRAINTS, configSchema, answerSchema, ImagesConfig, ImagesAnswer } from './Images.schema'
+import { CONSTRAINTS, ImagesConfig, ImagesAnswer } from './Images.schema'
 import { ImagesInputComponent } from './ImagesInput.component'
 
 type ImagesWizardProps = BaseResponseAreaWizardProps & {

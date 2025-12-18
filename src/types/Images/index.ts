@@ -1,4 +1,3 @@
-import { z } from 'zod'
 import { ResponseAreaTub } from '../response-area-tub'
 import { ImagesInputComponent } from './ImagesInput.component'
 import { ImagesWizardComponent } from './ImagesWizard.component'
@@ -39,7 +38,7 @@ export class SandboxResponseAreaTub extends ResponseAreaTub {
 
     //Check number of images
     if (this.answer.length > this.config.maxImages) return false
-    if (this.answer.length < 0) return false
+    if (this.answer.length <= 0) return false
 
     //Check each image
     for (const img of this.answer) {
