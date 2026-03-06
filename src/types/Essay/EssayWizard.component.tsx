@@ -37,7 +37,6 @@ export const EssayWizard: React.FC<EssayWizardProps> = props => {
     onChange,
   } = props
   const { classes, cx } = useStyles()
-  console.log('answer', answer)
 
   const updateAnswer = (newAnswer: string) => {
     onChange({

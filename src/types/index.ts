@@ -8,6 +8,7 @@ import { MatrixResponseAreaTub } from './Matrix'
 import { MultipleChoiceResponseAreaTub } from './MultipleChoice'
 import { NumberResponseAreaTub } from './NumberInput'
 import { NumericUnitsResponseAreaTub } from './NumericUnits'
+import { PseudocodeResponseAreaTub } from './Pseudocode'
 import { ResponseAreaTub } from './response-area-tub'
 import { isResponseAreaSandboxType } from './sandbox'
 import { TableResponseAreaTub } from './Table'
@@ -28,6 +29,7 @@ export const supportedResponseTypes = [
   'ESSAY',
   'CODE',
   'MILKDOWN',
+  'PSEUDOCODE',
   'LIKERT',
   'MATH_SINGLE_LINE',
   'MATH_MULTI_LINES',
@@ -58,6 +60,8 @@ const createReponseAreaTub = (type: string): ResponseAreaTub => {
       return new EssayResponseAreaTub()
     case 'CODE':
       return new CodeResponseAreaTub()
+    case 'PSEUDOCODE':
+      return new PseudocodeResponseAreaTub()
     case 'LIKERT':
       return new LikertResponseAreaTub()
     case 'MATH_SINGLE_LINE':

@@ -159,13 +159,23 @@ export abstract class ResponseAreaTub {
    * @throws Error if answerSchema is undefined or validation fails
    */
   protected extractAnswer = (provided: any): void => {
-    if (!this.answerSchema) throw new Error('Not implemented')
+    if (!this.answerSchema) {
+      throw new Error('Answer schema is not defined')
+    }
 
     const parsedAnswer = this.answerSchema.safeParse(provided)
-    if (!parsedAnswer.success) throw new Error('Could not extract answer')
+
+    if (!parsedAnswer.success) {
+      const issues = parsedAnswer.error.issues
+        .map(issue => `${issue.path.join('.') || 'root'}: ${issue.message}`)
+        .join('; ')
+
+      throw new Error(`Could not extract answer: ${provided}, issues: ${issues}`)
+    }
 
     this.answer = parsedAnswer.data
   }
+
 
   /**
    * Initializes the response area with default values.
