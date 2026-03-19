@@ -6,7 +6,7 @@ function ResponseAreaInputWrapper({ children }: { children: React.ReactNode }) {
 }
 
 // wrap the components with the necessary providers; only in the sandbox
-class WrappedSandboxResponseAreaTub extends SandboxResponseAreaTub {
+class WrappedSandboxResponseAreaTub extends GraphResponseAreaTub {
   constructor() {
     super()
 

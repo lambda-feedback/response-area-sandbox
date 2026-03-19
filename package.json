@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
-    "build:watch": "vite build --watch",
+    "build:watch": "node --max-old-space-size=4096 --no-opt ./node_modules/.bin/vite build --watch",
     "format": "prettier --check \"**/*.{js,ts,tsx}\"",
     "format:fix": "prettier --write \"**/*.{js,ts,tsx}\"",
     "lint": "eslint .",
@@ -14,7 +14,8 @@
     "ci": "run-p format lint typecheck",
     "fix": "run-s format:fix lint:fix",
     "preview": "vite preview",
-    "dev": "run-p build:watch preview"
+    "dev": "run-p build:watch preview",
+    "dev:fsa": "vite"
   },
   "dependencies": {
     "@date-io/date-fns": "^2.13.2",
@@ -35,6 +36,7 @@
     "@nivo/core": "^0.88.0",
     "@nivo/line": "^0.88.0",
     "@nivo/pie": "^0.88.0",
+    "cytoscape": "^3.33.1",
     "axios": "^1.7.2",
     "date-fns": "^2.28.0",
     "firebase": "^11.0.1",
@@ -46,6 +48,8 @@
     "markdown-to-jsx": "^7.1.7",
     "monaco-editor": "^0.50.0",
     "next": "^14.2.4",
+    "paper": "^0.12.18",
+    "reactflow": "^11.11.4",
     "notistack": "^2.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

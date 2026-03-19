@@ -37,7 +37,6 @@ export const CodeInput: React.FC<CodeInputProps> = ({
       loading={<Loading />}
       language={config.language}
       className={classes.codearea}
-      beforeMount={console.log}
     />
   )
 }

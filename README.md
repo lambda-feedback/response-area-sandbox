@@ -2,6 +2,10 @@
 
 Develop local TypeScript code to create custom response area types, and see them previewed live in the main application. When they're ready, provide your code to the Lambda Feedback team, who will consider including it in the main application after (human) review.
 
+## Graph Response Area
+
+Please refer to [Graph.md](./Graph.md)
+
 ## Overview
 
 To create a new response area type, you'll need to:

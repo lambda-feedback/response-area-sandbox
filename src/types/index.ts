@@ -1,5 +1,6 @@
 import { CodeResponseAreaTub } from './Code'
 import { EssayResponseAreaTub } from './Essay'
+import { GraphResponseAreaTub } from './Graph'
 import { ImagesResponseAreaTub } from './Images'
 import { LikertResponseAreaTub } from './Likert'
 import { MathMultiLinesResponseAreaTub } from './MathMultiLines'
@@ -9,7 +10,6 @@ import { MultipleChoiceResponseAreaTub } from './MultipleChoice'
 import { NumberResponseAreaTub } from './NumberInput'
 import { NumericUnitsResponseAreaTub } from './NumericUnits'
 import { ResponseAreaTub } from './response-area-tub'
-import { isResponseAreaSandboxType } from './sandbox'
 import { TableResponseAreaTub } from './Table'
 import { TextResponseAreaTub } from './TextInput'
 import { TrueFalseResponseAreaTub } from './TrueFalse'
@@ -35,9 +35,6 @@ export const supportedResponseTypes = [
 ]
 
 const createReponseAreaTub = (type: string): ResponseAreaTub => {
-  if (isResponseAreaSandboxType(type) && 'SandboxComponent' in window) {
-    return new (window.SandboxComponent as new () => ResponseAreaTub)()
-  }
 
   switch (type) {
     case 'BOOLEAN':
@@ -66,10 +63,12 @@ const createReponseAreaTub = (type: string): ResponseAreaTub => {
       return new MathMultiLinesResponseAreaTub()
     case 'IMAGES':
       return new ImagesResponseAreaTub()
+    case 'HANDDRAWNGRAPH':
+      return new GraphResponseAreaTub()
     case 'VOID':
       return new VoidResponseAreaTub()
     default:
-      console.error('Unknown ResponseAreaTub', { type })
+      console.error('Unknown response area Tub type: ' + type)
       return new VoidResponseAreaTub()
   }
 }
