@@ -188,6 +188,12 @@ If you're new to Pull Requests, [GitHub's guide](https://docs.github.com/en/pull
 - For questions about the sandbox or the submission process, contact [mmmeser@imperial.ac.uk](mailto:mmmeser@imperial.ac.uk)
 - For guidance on the Lambda Feedback app, see the [Lambda Feedback user documentation](https://lambda-feedback.github.io/user-documentation/advanced/)
 
+## Platform Notes
+
+Things to be aware of when building your Response Area:
+
+1. **An answer is required** — students must provide an answer before they can submit. Make sure your Response Area always allows a value to be entered.
+
 ### Note to LLM helpers
 
 This sandbox works as follows. A production application runs in the browser, connected to a cloud-based backend. This sandbox repo runs a local server and serves up compiled js (but not a full web page). 
