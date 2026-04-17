@@ -4,6 +4,8 @@
 
 This sandbox lets you build a custom Response Area and preview it live inside the Lambda Feedback app. When it's ready, you send your code to the Lambda Feedback team for review and potential inclusion in the main application.
 
+![Example of a custom Response Area in Lambda Feedback](docs/images/response-area-example.png)
+
 To create a new type, you'll:
 
 1. **Copy the Sandbox template** — duplicate `src/types/Sandbox/` and rename it after your type
@@ -22,6 +24,7 @@ See also: [Lambda Feedback user documentation](https://lambda-feedback.github.io
 
 Before you begin, make sure you have the following:
 
+- **Basic knowledge of TypeScript or JavaScript** — you'll be writing and editing code to build your Response Area. If you're new to TypeScript, [this introduction](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) is a good starting point
 - **Git** — for downloading the code. [Install Git](https://git-scm.com/downloads)
 - **A code editor** — [Visual Studio Code](https://code.visualstudio.com/) is recommended if you don't have one
 - **A Lambda Feedback account with Teacher access** — you'll need this in Step 7. Contact [mmmeser@imperial.ac.uk](mailto:mmmeser@imperial.ac.uk) if you don't have it yet
@@ -106,13 +109,15 @@ Note down the **Local** URL — you'll need it in Step 6.
 
 ##### 6. Configure the sandbox access on the app
 
-Log in to [lambdafeedback.com](https://www.lambdafeedback.com) and go to [Settings → Sandbox](https://www.lambdafeedback.com/settings/sandbox). Fill in:
+Log in to [lambdafeedback.com](https://www.lambdafeedback.com) first, then go to [Settings → Sandbox](https://www.lambdafeedback.com/settings/sandbox). Fill in:
 - **URL**: the Local URL from Step 5
 - **Name**: the name you set in Step 4c (default: `SANDBOX`). This must match exactly, including capitalisation.
 
 Click **Save**. The settings are stored in your browser.
 
 You should see a **'Ready'** message — you can then move on to Step 7.
+
+![Sandbox settings page showing a Ready message](docs/images/sandbox-settings-ready.png)
 
 If you see an error instead, check:
 - the URL matches what was shown in Step 5
@@ -122,10 +127,11 @@ If you see an error instead, check:
 
 You will need Teacher access to test this — if you don't have it yet, contact [mmmeser@imperial.ac.uk](mailto:mmmeser@imperial.ac.uk).
 
-1. Log in to [lambdafeedback.com](https://www.lambdafeedback.com)
-2. Select a module you are a teacher on. We suggest using a teacher sandbox module — if you don't have one, let us know at [mmmeser@imperial.ac.uk](mailto:mmmeser@imperial.ac.uk)
-3. Select a question set, then a question, then click **Add Response Area**
-4. In the input type dropdown, you should see your type (the name you set in Step 4c) as an option
+1. Select a module you are a teacher on. We suggest using a teacher sandbox module — if you don't have one, let us know at [mmmeser@imperial.ac.uk](mailto:mmmeser@imperial.ac.uk)
+2. Select a question set, then a question, then click **Add Response Area**
+3. In the input type dropdown, you should see your type (the name you set in Step 4c) as an option
+
+![Input type dropdown showing SANDBOX as an option](docs/images/response-area-dropdown.png)
 
 For more guidance on navigating the Lambda Feedback interface, see the [Lambda Feedback user documentation](https://lambda-feedback.github.io/user-documentation/advanced/).
 
@@ -167,7 +173,7 @@ Your Response Area lives in `src/types/<YourType>/`. The key files are:
 - **`index.ts`** — defines the name of your type, the settings it exposes, and how student answers are stored
 - **`SandboxInput.component.tsx`** — the UI that students and teachers will see
 
-Start by editing `SandboxInput.component.tsx`. For full details on what you can build, see the inline code comments in [response-area-tub.ts](src/types/response-area-tub.ts) — these explain all the available properties and methods.
+Start by editing `SandboxInput.component.tsx`. For full details on what you can build, see the inline code comments in [response-area-tub.ts](src/types/response-area-tub.ts) — these explain everything available to you as you build your Response Area.
 
 The existing types in `src/types/` are good examples to learn from — it's fine to copy code between them.
 
