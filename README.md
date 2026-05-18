@@ -194,10 +194,42 @@ To fix this, undo your structural changes and delete any response areas created 
 
 Your Response Area lives in `src/types/<YourType>/`. The key files are:
 
-- **`index.ts`** — defines the name of your type, the settings it exposes, and how student answers are stored
-- **`SandboxInput.component.tsx`** — the UI that students and teachers will see
+- **`index.ts`** — defines the name of your type, the settings it exposes, and how student answers are stored. This is the *tub* class that extends `ResponseAreaTub`.
+- **`SandboxInput.component.tsx`** — the UI component that both students and teachers will see.
 
-Start by editing `SandboxInput.component.tsx`. For full details on what you can build, see the inline code comments in [response-area-tub.ts](src/types/response-area-tub.ts) — these explain everything available to you as you build your Response Area.
+#### The two components
+
+Every tub class defines two components — both must be implemented:
+
+| Component | Who sees it | Purpose |
+|---|---|---|
+| `InputComponent` | Students (and teachers viewing answers) | The input UI students interact with to enter their answer |
+| `WizardComponent` | Teachers (when setting up the question) | The configuration UI — often identical to `InputComponent` for simple types |
+
+In `InputComponent`, the parent component holds all state. Your component **must** call `handleChange` every time the input value changes — otherwise the parent won't know the answer has been updated.
+
+In `WizardComponent`, `handleChange` takes a slightly different shape — it must include the `responseType`:
+
+```ts
+WizardComponent = (props: BaseResponseAreaWizardProps) => {
+  return MyInput({
+    ...props,
+    handleChange: answer => {
+      props.handleChange({
+        responseType: this.responseType,  // required
+        answer,
+      })
+    },
+    answer: this.answer,
+  })
+}
+```
+
+#### The answer schema
+
+`answerSchema` is a [Zod](https://zod.dev/) schema that defines what a valid answer looks like (e.g. `z.string()`, `z.number()`). The template already validates and narrows the type for you in `InputComponent` via `safeParse` — you just need to define the schema.
+
+Start by editing `SandboxInput.component.tsx`. For full details on what you can configure, see the inline code comments in [response-area-tub.ts](src/types/response-area-tub.ts) — these explain everything available to you.
 
 The existing types in `src/types/` are good examples to learn from — it's fine to copy code between them.
 
