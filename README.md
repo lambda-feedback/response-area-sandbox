@@ -2,9 +2,33 @@
 
 ## Overview
 
-This sandbox lets you build a custom Response Area and preview it live inside the Lambda Feedback app. When it's ready, you send your code to the Lambda Feedback team for review and potential inclusion in the main application.
+**Purpose:** This sandbox lets you develop a custom Response Area locally on your machine and test it live inside the real, production Lambda Feedback app — without deploying anything.
 
 ![Example of a custom Response Area in Lambda Feedback](docs/images/response-area-example.png)
+
+### How it works
+
+Normally, the Lambda Feedback app loads its response area components from its own production bundle. The sandbox exploits a browser-side settings page that lets you redirect one response area type to a URL of your choice.
+
+When you run `yarn dev`, the sandbox compiles your code and serves it from a local server (e.g. `localhost:4173`). You register that URL in the app's sandbox settings — and from that point on, **only in your browser**, the production app fetches and renders your locally-served code instead of its built-in version. Every time you save a file, the server recompiles and the app picks up the new version automatically.
+
+```
+  Your machine                        Lambda Feedback (your browser)
+  ─────────────────────────           ──────────────────────────────
+  src/types/YourType/
+        │
+        │  yarn dev (compile + serve)
+        ▼
+  Local server ──── fetched every 0.5s ────▶  Production app
+  localhost:4173                              renders your Response Area
+        ▲
+        │  save a file → auto-recompile
+  Your code editor
+```
+
+No code reaches the production backend until you submit a Pull Request. The redirect is stored only in your browser's local storage, so other users are unaffected.
+
+### Workflow summary
 
 To create a new type, you'll:
 
