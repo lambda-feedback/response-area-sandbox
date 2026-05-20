@@ -81,8 +81,8 @@ If you already manage multiple Node versions, you can use [Nodenv](https://githu
 In VS Code, open a terminal via **Terminal → New Terminal** in the menu bar. Then run the following commands:
 
 ```
-npm install --global yarn
-yarn
+corepack enable
+yarn install
 ```
 
 The first command installs Yarn (a package manager). The second installs the project's dependencies.
@@ -92,6 +92,7 @@ The first command installs Yarn (a package manager). The second installs the pro
 **a) Copy the Sandbox folder**
 
 Duplicate the folder `src/types/Sandbox/` and rename the copy after your type (e.g. `src/types/<YourType>/`). This is your starting point — all your code will live here.
+**To create a response area that can be deployed on production, ensure that all your code is only in this folder.**
 
 In VS Code, right-click the `Sandbox` folder in the Explorer panel and select **Copy**, then right-click the `types` folder and select **Paste**. Rename the pasted folder to your type name. On Mac Finder, you can right-click → **Duplicate** instead. On Windows Explorer, right-click → **Copy**, then right-click an empty area → **Paste**.
 
