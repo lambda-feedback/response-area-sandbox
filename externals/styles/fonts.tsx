@@ -1,80 +1,16 @@
-import { Fira_Sans, Fira_Mono, Lato, Roboto } from 'next/font/google'
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
+import '@fontsource/lato/400.css'
+import '@fontsource/fira-mono/400.css'
+import '@fontsource/fira-sans/300.css'
+import '@fontsource/fira-sans/400.css'
+import '@fontsource/fira-sans/500.css'
+import '@fontsource/fira-sans/600.css'
+import '@fontsource/fira-sans/700.css'
 
-export const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  fallback: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    'Segoe UI',
-    'Roboto',
-    'Helvetica Neue',
-    'Arial',
-    'sans-serif',
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-  ],
-  variable: '--font-roboto',
-  preload: false,
-})
-
-export const firaSans = Fira_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  fallback: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    'Segoe UI',
-    'Roboto',
-    'Helvetica Neue',
-    'Arial',
-    'sans-serif',
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-  ],
-  variable: '--font-fira-sans',
-  preload: false,
-})
-
-export const firaMono = Fira_Mono({
-  subsets: ['latin'],
-  weight: ['400'],
-  fallback: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    'Segoe UI',
-    'Roboto',
-    'Helvetica Neue',
-    'Arial',
-    'sans-serif',
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-  ],
-  variable: '--font-fira-mono',
-  preload: false,
-})
-
-export const lato = Lato({
-  subsets: ['latin'],
-  weight: ['400'],
-  style: ['normal', 'italic'],
-  fallback: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    'Segoe UI',
-    'Roboto',
-    'Helvetica Neue',
-    'Arial',
-    'sans-serif',
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-  ],
-  variable: '--font-lato',
-  preload: false,
-})
+export const roboto = { style: { fontFamily: 'Roboto, sans-serif' } }
+export const firaSans = { style: { fontFamily: '"Fira Sans", sans-serif' } }
+export const firaMono = { style: { fontFamily: '"Fira Mono", monospace' } }
+export const lato = { style: { fontFamily: 'Lato, sans-serif' } }
